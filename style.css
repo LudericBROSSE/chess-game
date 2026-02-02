@@ -217,3 +217,26 @@ select {
         align-items: center;
     }
 }
+
+/* Portfolio Link */
+.portfolio-link {
+    display: block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffd700;
+    /* Gold color */
+    text-decoration: none;
+    border: 1px solid #ffd700;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.portfolio-link:hover {
+    background: #ffd700;
+    color: #1e1e1e;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+}
