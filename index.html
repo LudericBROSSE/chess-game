@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeu d'Échecs contre IA</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts pour un look premium -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>Échecs IA</h1>
+            <div id="status">C'est aux Blancs de jouer</div>
+        </header>
+
+        <main>
+            <div id="board" class="board">
+                <!-- Les cases seront générées par JS -->
+            </div>
+            
+            <div class="controls">
+                <div class="captured-pieces">
+                    <div id="captured-white"></div>
+                    <div id="captured-black"></div>
+                </div>
+                <button id="new-game-btn" class="btn primary">Nouvelle Partie</button>
+                <div class="difficulty-selector">
+                    <label for="difficulty">Niveau IA:</label>
+                    <select id="difficulty">
+                        <option value="1">Débutant</option>
+                        <option value="2" selected>Intermédiaire</option>
+                        <option value="3">Avancé</option>
+                    </select>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="chess.js"></script>
+    <script src="ai.js"></script>
+    <script src="ui.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

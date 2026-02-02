@@ -1,0 +1,219 @@
+:root {
+    --bg-color: #1a1a2e;
+    --text-color: #e0e0e0;
+    --primary-color: #4a4e69;
+    --accent-color: #9a8c98;
+    --board-light: #f0d9b5;
+    --board-dark: #b58863;
+    --highlight-move: rgba(100, 255, 100, 0.5);
+    --highlight-last: rgba(255, 255, 50, 0.5);
+
+    --font-family: 'Outfit', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+header {
+    text-align: center;
+}
+
+h1 {
+    font-weight: 600;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+#status {
+    font-size: 1.2rem;
+    color: var(--accent-color);
+}
+
+main {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.board {
+    width: 480px;
+    height: 480px;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    border: 5px solid #2e2e42;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.square {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+}
+
+.square.light {
+    background-color: var(--board-light);
+    color: black;
+}
+
+.square.dark {
+    background-color: var(--board-dark);
+    color: black;
+}
+
+.piece {
+    cursor: grab;
+    transition: transform 0.2s;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 60px;
+    /* Taille pour Unicode */
+    line-height: 1;
+    user-select: none;
+    pointer-events: none;
+    /* Laisse le clic passer au square, sauf si on drag */
+}
+
+/* Couleurs spécifiques pour les pièces si nécessaire, mais le caractère contient déjà une info de "remplissage" 
+   Cependant, pour un look "premium", on peut vouloir forcer la couleur.
+   Les pièces noires sont souvent remplies en noir, les blanches en blanc avec contour.
+*/
+.piece.white {
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.piece.black {
+    color: #000;
+    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.2);
+}
+
+.piece:active {
+    cursor: grabbing;
+}
+
+/* Indicateurs de coups possibles */
+.hint {
+    position: absolute;
+    width: 25%;
+    height: 25%;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.square.dark .hint {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.square.capture-hint {
+    box-shadow: inset 0 0 0 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Panneau de contrôles */
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: #232338;
+    padding: 20px;
+    border-radius: 12px;
+    min-width: 200px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.1s;
+}
+
+.btn.primary {
+    background-color: var(--accent-color);
+    color: #fff;
+}
+
+.btn.primary:hover {
+    background-color: #b59eb5;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+.difficulty-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+select {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #444;
+    background: #1a1a2e;
+    color: #fff;
+}
+
+/* Pièces capturées */
+.captured-pieces {
+    min-height: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.captured-row {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 20px;
+}
+
+@media (max-width: 768px) {
+    .board {
+        width: 100vw;
+        height: 100vw;
+        max-width: 400px;
+        max-height: 400px;
+    }
+
+    main {
+        flex-direction: column;
+        align-items: center;
+    }
+}
